@@ -1,0 +1,125 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Where uploaded images go, and the URL path the site uses to find them
+media_folder: "src/images"
+public_folder: "/images"
+
+site_url: https://thepatch.example.com
+display_url: https://thepatch.example.com
+logo_url: /favicon.svg
+
+publish_mode: simple
+
+collections:
+  - name: "posts"
+    label: "Articles"
+    label_singular: "Article"
+    folder: "src/posts"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    summary: "{{category}} — {{title}}"
+    sortable_fields: ["date", "title", "category"]
+    view_filters:
+      - label: "News"
+        field: category
+        pattern: "news"
+      - label: "Reviews"
+        field: category
+        pattern: "reviews"
+      - label: "Opinions"
+        field: category
+        pattern: "opinions"
+    fields:
+      - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/post.njk" }
+      - { label: "Title", name: "title", widget: "string", hint: "The headline. Keep it under ~70 characters for SEO." }
+      - { label: "Subhead (dek)", name: "dek", widget: "string", required: false, hint: "One sentence under the headline. Shows on cards and social previews." }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "News", value: "news" }
+          - { label: "Reviews", value: "reviews" }
+          - { label: "Opinions", value: "opinions" }
+        default: "news"
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, default: "" }
+      - { label: "Author", name: "author", widget: "string", default: "The Patch Team" }
+      - { label: "Platform(s)", name: "platform", widget: "string", required: false, hint: "Only used for reviews, e.g. 'PC / PS5 / Xbox Series X'" }
+      - { label: "Feature on homepage?", name: "featured", widget: "boolean", default: false, hint: "Only feature one article at a time for the cleanest homepage." }
+      - { label: "Cover Image", name: "image", widget: "image", required: false }
+      - { label: "Cover Image Alt Text", name: "imageAlt", widget: "string", required: false, hint: "Describe the image for accessibility & SEO." }
+      - label: "Review Score (0–10)"
+        name: "score"
+        widget: "number"
+        required: false
+        min: 0
+        max: 10
+        value_type: "float"
+        hint: "Only for reviews — this powers the Verdict Patch scorecard."
+      - label: "Pros"
+        name: "pros"
+        widget: "list"
+        required: false
+        hint: "Only for reviews. One short point per line."
+      - label: "Cons"
+        name: "cons"
+        widget: "list"
+        required: false
+        hint: "Only for reviews. One short point per line."
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Article Body", name: "body", widget: "markdown" }
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "src/about.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/page.njk" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Contact Page"
+        name: "contact"
+        file: "src/contact.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/page.njk" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
+      - label: "Privacy Policy"
+        name: "privacy"
+        file: "src/privacy-policy.md"
+        fields:
+          - { label: "Layout", name: "layout", widget: "hidden", default: "layouts/page.njk" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string", required: false }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General Settings"
+        name: "site"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Site Title", name: "title", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Site URL", name: "url", widget: "string", hint: "Your real Netlify/custom domain, no trailing slash." }
+          - { label: "Meta Description", name: "description", widget: "text" }
+          - { label: "Author Name", name: "author", widget: "string" }
+          - { label: "Twitter/X Handle", name: "twitterHandle", widget: "string" }
+          - label: "Socials"
+            name: "socials"
+            widget: "object"
+            fields:
+              - { label: "TikTok URL", name: "tiktok", widget: "string" }
+              - { label: "YouTube URL", name: "youtube", widget: "string" }
+              - { label: "X URL", name: "x", widget: "string" }
+          - { label: "AdSense Publisher ID", name: "adsenseClient", widget: "string", hint: "Looks like ca-pub-XXXXXXXXXXXXXXXX" }
+          - { label: "AdSense Slot — Header", name: "adsenseSlotHeader", widget: "string", required: false }
+          - { label: "AdSense Slot — In-Article", name: "adsenseSlotInArticle", widget: "string", required: false }
+          - { label: "AdSense Slot — Sidebar", name: "adsenseSlotSidebar", widget: "string", required: false }

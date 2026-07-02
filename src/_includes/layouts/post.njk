@@ -1,0 +1,78 @@
+---
+layout: layouts/base.njk
+---
+<article>
+  <header class="post-header">
+    <div class="wrap">
+      <span class="badge badge-{{ category }}">{{ category }}</span>
+      <h1 class="post-title">{{ title }}</h1>
+      {% if dek %}<p class="post-dek">{{ dek }}</p>{% endif %}
+      <div class="post-meta">
+        <span class="mono">{{ date | versionTag }}</span>
+        <span>{{ date | readableDate }}</span>
+        {% if author %}<span>by {{ author }}</span>{% endif %}
+        {% if platform %}<span>{{ platform }}</span>{% endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap post-layout">
+    <div class="prose">
+      {% if image %}
+      <div class="post-cover">
+        <img src="{{ image }}" alt="{{ imageAlt or title }}" loading="eager">
+      </div>
+      {% endif %}
+
+      {% if category == "reviews" and score %}
+      <div class="verdict">
+        <div class="verdict-head">
+          <span>Verdict Patch</span>
+          <span class="mono">{{ date | versionTag }}</span>
+        </div>
+        <div class="verdict-score">{{ score }}<span>/10</span></div>
+        {% if pros %}
+        {% for pro in pros %}<div class="diff-line diff-add">+ {{ pro }}</div>{% endfor %}
+        {% endif %}
+        {% if cons %}
+        {% for con in cons %}<div class="diff-line diff-del">- {{ con }}</div>{% endfor %}
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {{ content | safe }}
+
+      {% include "partials/ad-slot.njk" %}
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <h4>More {{ category }}</h4>
+        <ul class="sidebar-list">
+          {% set related = collections[category] | limit(4) %}
+          {% for post in related %}
+          {% if post.url != page.url %}
+          <li>
+            <a href="{{ post.url }}">
+              <div class="title">{{ post.data.title }}</div>
+              <div class="meta mono">{{ post.date | versionTag }}</div>
+            </a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="sidebar-card">
+        <h4>Follow The Patch</h4>
+        <ul class="sidebar-list">
+          <li><a href="{{ site.socials.tiktok }}" target="_blank" rel="noopener">TikTok →</a></li>
+          <li><a href="{{ site.socials.youtube }}" target="_blank" rel="noopener">YouTube →</a></li>
+          <li><a href="{{ site.socials.x }}" target="_blank" rel="noopener">X →</a></li>
+        </ul>
+      </div>
+
+      {% include "partials/ad-slot.njk" %}
+    </aside>
+  </div>
+</article>

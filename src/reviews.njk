@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+title: Reviews
+description: In-depth game reviews with clear verdicts from The Patch.
+category: reviews
+pagination:
+  data: collections.reviews
+  size: 12
+  alias: posts
+permalink: "/reviews/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber }}/{% endif %}"
+---
+<header class="page-header">
+  <div class="wrap">
+    <span class="badge badge-reviews">reviews</span>
+    <h1>Reviews</h1>
+    <p style="color:var(--paper-dim);">Every review ships with a Verdict Patch — a clear score and a plain-English breakdown of what's good and what's not.</p>
+  </div>
+</header>
+
+<section class="section" style="border-bottom:none;">
+  <div class="wrap">
+    <div class="grid">
+      {% for post in posts %}
+      {% include "partials/card.njk" %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

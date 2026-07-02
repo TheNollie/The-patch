@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} · {{ site.title }}{% else %}{{ site.title }} — {{ site.tagline }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ title or site.title }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:type" content="{% if layout == 'layouts/post.njk' %}article{% else %}website{% endif %}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  {% if image %}<meta property="og:image" content="{{ site.url }}{{ image }}">{% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="{{ site.twitterHandle }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="alternate" href="/feed.xml" type="application/atom+xml" title="{{ site.title }} feed">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles/main.css">
+
+  <!--
+    ADSENSE: uncomment once your site is approved. Replace ca-pub-XXXXXXXXXXXXXXXX
+    in src/_data/site.json with your real publisher ID first.
+  -->
+  <!--
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.adsenseClient }}" crossorigin="anonymous"></script>
+  -->
+  {#- swap the HTML comment above out (delete <!-- and -->) once AdSense approves you -#}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "{% if layout == 'layouts/post.njk' %}NewsArticle{% else %}WebSite{% endif %}",
+    "name": "{{ title or site.title }}",
+    "publisher": { "@type": "Organization", "name": "{{ site.title }}" }
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="visually-hidden" style="position:absolute; left:-9999px;">Skip to content</a>
+
+  {% include "partials/header.njk" %}
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+
+  <div class="consent-banner" id="consent-banner">
+    <p>The Patch uses cookies for analytics and ads so we can keep the lights on and the takes hot. See our <a href="/privacy-policy/" style="color: var(--amber); text-decoration: underline;">privacy policy</a>.</p>
+    <div class="consent-actions">
+      <button class="btn" id="consent-decline">Decline</button>
+      <button class="btn btn-primary" id="consent-accept">Accept</button>
+    </div>
+  </div>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

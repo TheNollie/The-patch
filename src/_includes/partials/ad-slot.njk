@@ -1,0 +1,15 @@
+{# Usage: {% include "partials/ad-slot.njk" %} — pass `adLabel` in scope to customize the label #}
+<div class="ad-slot">
+  <span>Advertisement{% if adLabel %} · {{ adLabel }}{% endif %}</span>
+  <!--
+    Once approved for AdSense, replace this div's contents with your real unit, e.g.:
+
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="{{ site.adsenseClient }}"
+         data-ad-slot="{{ site.adsenseSlotInArticle }}"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+</div>
