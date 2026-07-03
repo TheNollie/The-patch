@@ -1,17 +1,17 @@
 {
-  "title": "The Patch",
-  "tagline": "Gaming news, reviews, and hot takes — pushed daily.",
-  "url": "https://thepatch.example.com",
-  "description": "The Patch covers gaming news, reviews, and opinion pieces with a fast, no-fluff patch-notes approach.",
-  "author": "The Patch",
-  "twitterHandle": "@thepatchgg",
   "socials": {
     "tiktok": "https://tiktok.com/@thepatchgg",
     "youtube": "https://youtube.com/@thepatchgg",
     "x": "https://x.com/thepatchgg"
   },
+  "adsenseSlotInArticle": "0000000000",
+  "author": "The Patch",
+  "tagline": "Gaming news, reviews, and hot takes — pushed daily.",
+  "url": "https://thepatch.tech",
+  "adsenseSlotSidebar": "0000000000",
   "adsenseClient": "ca-pub-XXXXXXXXXXXXXXXX",
   "adsenseSlotHeader": "0000000000",
-  "adsenseSlotInArticle": "0000000000",
-  "adsenseSlotSidebar": "0000000000"
+  "title": "The Patch",
+  "twitterHandle": "@thepatchgg",
+  "description": "The Patch covers gaming news, reviews, and opinion pieces with a fast, no-fluff patch-notes approach."
 }
