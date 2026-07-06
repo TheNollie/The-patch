@@ -1,13 +1,16 @@
 backend:
-  name: git-gateway
+  name: github
+  repo:theNollie/the-patch
   branch: main
+  base_url: https://the-patch-decap-oauth.jimimonteithr.workers.dev
+  auth_endpoint: auth
 
 # Where uploaded images go, and the URL path the site uses to find them
 media_folder: "src/images"
 public_folder: "/images"
 
-site_url: https://thepatch.example.com
-display_url: https://thepatch.example.com
+site_url: https://thepatch.tech
+display_url: https://thepatch.tech
 logo_url: /favicon.svg
 
 publish_mode: simple
