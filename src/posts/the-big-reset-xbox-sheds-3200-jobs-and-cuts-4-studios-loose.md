@@ -1,6 +1,6 @@
 ---
 layout: layouts/post.njk
-title: "The big reset: Xbox sheds 3200 jobs and cuts 4 studios loose. "
+title: "The big reset: Xbox sheds 3200 jobs and cuts 4 studios lose. "
 category: news
 date: 2026-07-06
 author: The Patch Team
