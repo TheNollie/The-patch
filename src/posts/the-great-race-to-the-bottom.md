@@ -7,7 +7,7 @@ date: 2026-07-06
 author: The Patch Team
 featured: false
 image: /images/img_5053.jpeg
-imageAlt: Xbox and PlayStation square of for the worst
+imageAlt: Xbox and PlayStation square off for the worst
 tags:
   - Xbox
   - PlayStation
